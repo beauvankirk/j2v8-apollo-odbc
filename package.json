@@ -1,0 +1,73 @@
+{
+  "name": "j2v8-apollo-odbc",
+  "description": "Apollo Koa GraphQL Server with Join-Monster, GraphsiQL, GraphQL Voyager, with ODBC dialect added, run in J2V8 JVM",
+  "version": "3.10.0",
+  "author": "Beau Van Kirk (https://github.com/beauvankirk)",
+  "license": "MIT",
+  "homepage": "https://github.com/beauvankirk/j2v8-apollo-odbc",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/beauvankirk/j2v8-apollo-odbc.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ngduc/react-setup/issues"
+  },
+  "main": "app-target/server/bundle.js",
+  "scripts": {
+    "start": "npm run build && NODE_ENV=production node ./dist/server.js",
+    "dev": "npm run build && NODE_ENV=development DEBUG=express:* node --harmony ./dist/server.js",
+    "start-forever": "forever --minUptime 1000 --spinSleepTime 1000 -c \"node --harmony\" ./dist/server.js",
+    "start-forever-background": "forever stop 'reactsetup' || true && NODE_ENV=production forever start --uid 'reactsetup' -l reactsetup.log --append --minUptime 1000 --spinSleepTime 1000 -c \"node --harmony\" ./dist/server.js",
+    "build-msg": "babel --plugins react-intl src/**/messages.js && babel-node tools/scripts/translate.js",
+    "build": "webpack -p --define process.env.NODE_ENV=production --config configs/webpack.voyager.js && webpack -p --define process.env.NODE_ENV=production --config configs/webpack.server.js --display-error-details",
+    "build-server": "webpack -p --define process.env.NODE_ENV=production --config webpack.server.js --display-error-details",
+    "build-client": "webpack --colors --display-error-details --config configs/webpack.client.js",
+    "clean": "rm -rf ./dist && rm -rf ./static"
+  },
+  "dependencies": {
+    "babel-preset-stage-2": "^6.22.0",
+    "body-parser": "^1.17.1",
+    "dataloader": "^1.3.0",
+    "express": "^4.15.2",
+    "graphql": "^0.9.1",
+    "graphql-tools": "^0.10.1",
+    "graphql-voyager": "^1.0.0-rc.1",
+    "graphsiql": "beauvankirk/graphsiql#dev",
+    "isomorphic-fetch": "^2.2.1",
+    "join-monster": "beauvankirk/join-monster#dev",
+    "join-monster-graphql-tools-adapter": "0.0.0",
+    "koa": "^2.2.0",
+    "koa-cors": "0.0.16",
+    "koa-custom-graphiql": "beauvankirk/koa-custom-graphiql#dev",
+    "koa-logger": "^2.0.1",
+    "koa-router": "^5.4.0",
+    "koa-static": "^3.0.0",
+    "lodash": "^4.17.4",
+    "mkdirp": "^0.5.1",
+    "react": "latest",
+    "react-dom": "latest",
+    "request-promise": "^4.1.1",
+    "webpack-merge": "^4.1.0",
+    "awesome-typescript-loader": "^3.1.2",
+    "babel": "latest",
+    "babel-loader": "latest",
+    "babel-preset-es2015": "latest",
+    "babel-preset-react": "latest",
+    "copy-webpack-plugin": "^4.0.1",
+    "css-loader": "latest",
+    "extract-text-webpack-plugin": "^2.1.0",
+    "file-loader": "latest",
+    "html-webpack-plugin": "^2.28.0",
+    "morgan": "^1.8.1",
+    "node-sass": "latest",
+    "react-svg-loader": "latest",
+    "resolve-url": "latest",
+    "sass-loader": "latest",
+    "style-loader": "latest",
+    "url-loader": "latest",
+    "webpack": "latest"
+  },
+  "engines": {
+    "node": ">=6.9.5"
+  }
+}
